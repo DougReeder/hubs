@@ -132,6 +132,25 @@
     margin-left: 8px;
   }
 
+  :local(.overlay) {
+    position: fixed;
+    z-index: 3;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: lightgray;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    :local(.end-user-agreement) {
+      @extend %action-button;
+      margin-top: 8px;
+    }
+  }
+
   :local(.name) {
     @extend %top-title;
     @extend %glass-text;

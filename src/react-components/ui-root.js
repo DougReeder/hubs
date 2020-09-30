@@ -169,6 +169,7 @@ class UIRoot extends Component {
   };
 
   state = {
+    showEUA: !localStorage.getItem('acceptedEUA'),   // false if *anything* is stored
     enterInVR: false,
     entered: false,
     entering: false,
@@ -1044,6 +1045,25 @@ class UIRoot extends Component {
 
     return (
       <div className={entryStyles.entryPanel}>
+        { this.state.showEUA ?
+          <div id={"endUserAgreementOverlay"} className={entryStyles.overlay}>
+            <div className={entryStyles.endUserAgreement}>By clicking acknowledge you agree to our end-user agreement
+              <button
+                aria-label="agree to end-user agreement"
+                onClick={() => {
+                  try {
+                    localStorage.setItem("acceptedEUA", "true");
+                  } catch (err) {   // probably Mobile Safari in Private Browsing
+                    console.error("while storing agreement:", err);
+                  }
+                  this.setState({ showEUA: false })
+                }}
+                className={entryStyles.collapseButton}
+              >Agree</button>
+            </div>
+          </div>
+          : null }
+
         <div className={entryStyles.name}>
           <button
             aria-label="Close room entry panel and spectate from lobby"
