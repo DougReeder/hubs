@@ -65,6 +65,7 @@ AFRAME.registerComponent("hoverable-visuals", {
       !interaction.state.rightRemote.held &&
       !toggling.rightToggledOff
     ) {
+      // console.log("setting interactorTwo to", interaction.options.rightRemote.entity.object3D.id, interaction.options.rightRemote.entity)
       interactorTwo = interaction.options.rightRemote.entity.object3D;
     }
     if (interaction.state.rightHand.hovered === this.el && !interaction.state.rightHand.held) {
@@ -96,14 +97,14 @@ AFRAME.registerComponent("hoverable-visuals", {
       uniform.hubs_SweepParams.value = this.sweepParams;
 
       uniform.hubs_HighlightInteractorOne.value = !!interactorOne && showEffect && !this.isTouchscreen;
-      uniform.hubs_InteractorOnePos.value[0] = interactorOneTransform[12];
-      uniform.hubs_InteractorOnePos.value[1] = interactorOneTransform[13];
-      uniform.hubs_InteractorOnePos.value[2] = interactorOneTransform[14];
+      uniform.hubs_InteractorOnePos.value[0] = interactorOneTransform[12] || 0;
+      uniform.hubs_InteractorOnePos.value[1] = interactorOneTransform[13] || 0;
+      uniform.hubs_InteractorOnePos.value[2] = interactorOneTransform[14] || 0;
 
       uniform.hubs_HighlightInteractorTwo.value = !!interactorTwo && showEffect && !this.isTouchscreen;
-      uniform.hubs_InteractorTwoPos.value[0] = interactorTwoTransform[12];
-      uniform.hubs_InteractorTwoPos.value[1] = interactorTwoTransform[13];
-      uniform.hubs_InteractorTwoPos.value[2] = interactorTwoTransform[14];
+      uniform.hubs_InteractorTwoPos.value[0] = interactorTwoTransform[12] || 0;
+      uniform.hubs_InteractorTwoPos.value[1] = interactorTwoTransform[13] || 0;
+      uniform.hubs_InteractorTwoPos.value[2] = interactorTwoTransform[14] || 0;
 
       if (interactorOne || interactorTwo || isFrozen) {
         uniform.hubs_Time.value = time;

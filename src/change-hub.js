@@ -30,7 +30,7 @@ function loadRoomObjects(hubId) {
 }
 
 export async function changeHub(hubId, addToHistory = true, waypoint = "") {
-  if (hubId === APP.hub.hub_id) {
+  if (hubId === APP.hub?.hub_id) {
     console.log("Change hub called with the current hub id. This is a noop.");
     return;
   }
@@ -40,7 +40,7 @@ export async function changeHub(hubId, addToHistory = true, waypoint = "") {
   const scene = AFRAME.scenes[0];
 
   // Generate leave events for everyone in the room.
-  Object.keys(APP.hubChannel.presence.state).forEach(key => {
+  Object.keys(APP.hubChannel.presence?.state).forEach(key => {
     const clientId = APP.getSid(key);
     if (clientId !== localClientID) {
       pendingParts.push(clientId);
@@ -155,7 +155,7 @@ window.changeHub = changeHub;
 window.addEventListener("popstate", function () {
   const qs = new URLSearchParams(location.search);
   const newHubId = qs.get("hub_id") || document.location.pathname.substring(1).split("/")[0];
-  if (newHubId !== APP.hub.hub_id) {
+  if (newHubId !== APP.hub?.hub_id) {
     changeHub(newHubId, false);
   }
 });

@@ -112,14 +112,14 @@ export function hoverableVisualsSystem(world: HubsWorld) {
         uniform.hubs_SweepParams.value = sweepParams;
 
         uniform.hubs_HighlightInteractorOne.value = !!interactorOne && !isTouchscreen && showEffect;
-        uniform.hubs_InteractorOnePos.value[0] = interactorOneTransform[12];
-        uniform.hubs_InteractorOnePos.value[1] = interactorOneTransform[13];
-        uniform.hubs_InteractorOnePos.value[2] = interactorOneTransform[14];
+        uniform.hubs_InteractorOnePos.value[0] = interactorOneTransform[12] || 0;
+        uniform.hubs_InteractorOnePos.value[1] = interactorOneTransform[13] || 0;
+        uniform.hubs_InteractorOnePos.value[2] = interactorOneTransform[14] || 0;
 
         uniform.hubs_HighlightInteractorTwo.value = !!interactorTwo && !isTouchscreen && showEffect;
-        uniform.hubs_InteractorTwoPos.value[0] = interactorTwoTransform[12];
-        uniform.hubs_InteractorTwoPos.value[1] = interactorTwoTransform[13];
-        uniform.hubs_InteractorTwoPos.value[2] = interactorTwoTransform[14];
+        uniform.hubs_InteractorTwoPos.value[0] = interactorTwoTransform[12] || 0;
+        uniform.hubs_InteractorTwoPos.value[1] = interactorTwoTransform[13] || 0;
+        uniform.hubs_InteractorTwoPos.value[2] = interactorTwoTransform[14] || 0;
 
         if (interactorOne || interactorTwo || isFrozen) {
           uniform.hubs_Time.value = world.time.elapsed;

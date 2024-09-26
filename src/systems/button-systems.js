@@ -1,25 +1,32 @@
 import { isTagged } from "../components/tags";
 
 export class HoldableButtonSystem {
+  prevHeld = null;
+  prevHeldLeft = null;
+  prevHovered = null;
+
   tick() {
     const interaction = AFRAME.scenes[0].systems.interaction;
     const held = interaction.state.rightRemote.held;
+    const hovered = interaction?.state?.rightRemote?.hovered;
 
     if (this.prevHeld && this.prevHeld !== held) {
       // TODO: Should this check for holdable button?
-      this.prevHeld.object3D.dispatchEvent({
+      this.prevHovered?.object3D?.dispatchEvent({
         type: "holdable-button-up",
         object3D: interaction.options.rightRemote.entity.object3D
       });
     }
     if (held && this.prevHeld !== held) {
-      held.object3D.dispatchEvent({
+      console.log("button-systems: held is", held?.object3D.id, held, "hovered is", hovered?.object3D.id, hovered, "dispatching right 'holdable-button-down' to", hovered?.object3D.id, hovered)
+      hovered?.object3D?.dispatchEvent({
         type: "holdable-button-down",
         object3D: interaction.options.rightRemote.entity.object3D
       });
     }
 
     this.prevHeld = held;
+    this.prevHovered = hovered
 
     const heldLeft = interaction.state.leftRemote.held;
 
@@ -31,6 +38,7 @@ export class HoldableButtonSystem {
         });
     }
     if (heldLeft && this.prevHeldLeft !== heldLeft) {
+      console.log("dispatching left 'holdable-button-down' to", interaction.options.leftRemote.entity.object3D.id)
       isTagged(this.heldLeft, "holdableButton") &&
         heldLeft.object3D.dispatchEvent({
           type: "holdable-button-down",

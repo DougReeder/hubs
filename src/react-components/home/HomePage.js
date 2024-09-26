@@ -22,6 +22,7 @@ import { isHmc } from "../../utils/isHmc";
 import maskEmail from "../../utils/mask-email";
 
 export function HomePage() {
+  console.log("Hello, this has changes to button-systems"); // Added this line
   const auth = useContext(AuthContext);
   const intl = useIntl();
 

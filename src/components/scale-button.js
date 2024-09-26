@@ -75,6 +75,7 @@ export class ScalingHandler {
   }
 
   startScaling(object3D) {
+    console.log("scale-button: startScaling isScaling:", this.isScaling, "objectToScale:", this.objectToScale)
     if (this.isScaling || !this.objectToScale) {
       return;
     }
@@ -123,6 +124,7 @@ export class ScalingHandler {
       (object3D === this.leftEventer && this.raycaster === this.leftRaycaster) ||
       (object3D !== this.leftEventer && this.raycaster === this.rightRaycaster)
     ) {
+      console.log("scale-button: endScaling()")
       this.isScaling = false;
       this.transformSelectedObjectSystem.transforming = false;
     }
@@ -138,6 +140,7 @@ export class ScalingHandler {
   }
 
   tick() {
+    // console.log("scale-button: tick()   isScaling:", this.isScaling)
     if (!this.isScaling) return;
     const intersection = this.raycastOnPlane();
     if (!intersection) return;
@@ -163,6 +166,7 @@ export class ScalingHandler {
     this.objectMatrix.copy(this.objectToScale.matrixWorld);
     this.objectMatrix.scale(this.deltaScale);
     setMatrixWorld(this.objectToScale, this.objectMatrix);
+    console.log("scale-button: tick()   desiredObjectScale:", this.desiredObjectScale)
   }
 }
 
@@ -175,7 +179,9 @@ AFRAME.registerComponent("scale-button", {
       this.handler.objectToScale = networkedEl.object3D;
     });
 
+    console.log("scale-button: adding 'holdable-button-down' to", this.el.object3D.id, this.el)
     this.el.object3D.addEventListener("holdable-button-down", e => {
+      console.log("scale-button: holdable-button-down")
       if (!(NAF.utils.isMine(this.handler.networkedEl) || NAF.utils.takeOwnership(this.handler.networkedEl))) {
         return;
       }
@@ -183,6 +189,7 @@ AFRAME.registerComponent("scale-button", {
       this.handler.startScaling(e.object3D);
     });
     this.el.object3D.addEventListener("holdable-button-up", e => {
+      console.log("scale-button: holdable-button-up")
       this.handler.endScaling(e.object3D);
     });
   },

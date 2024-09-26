@@ -5,6 +5,7 @@ import { getServerTime } from "../phoenix-adapter";
 import type { EntityID } from "./networking-types";
 
 export function takeOwnership(world: HubsWorld, eid: EntityID) {
+  console.log("takeOwnership:", eid)
   // TODO we do this to have a single API for taking ownership of things in new code, but it obviously relies on NAF/AFrame
   if (hasComponent(world, AEntity, eid)) {
     const el = world.eid2obj.get(eid)!.el!;

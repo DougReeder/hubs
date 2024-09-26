@@ -76,6 +76,7 @@ AFRAME.registerComponent("transform-button", {
   },
   play() {
     this.el.object3D.addEventListener("interact", this.onGrabStart);
+    console.log("transform-object-button: adding 'holdable-button-down' to", this.el.object3D.id, this.el)
     this.el.object3D.addEventListener("holdable-button-down", this.onGrabStart);
     this.el.object3D.addEventListener("holdable-button-up", this.onGrabEnd);
   },
@@ -202,6 +203,7 @@ AFRAME.registerSystem("transform-selected-object", {
     this.mode = data.mode;
     this.transforming = true;
 
+    console.log("transform-object-button: startTransform;", this.data, "   target:", target, "   hand:", hand)
     if (this.mode === TRANSFORM_MODE.ALIGN) {
       this.store.update({ activity: { hasRecentered: true } });
       return;

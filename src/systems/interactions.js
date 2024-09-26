@@ -117,12 +117,17 @@ AFRAME.registerSystem("interaction", {
       this.options.leftHand.entity = document.getElementById("player-left-controller");
       this.options.rightHand.entity = document.getElementById("player-right-controller");
       this.options.rightRemote.entity = document.getElementById("right-cursor");
+      console.log("interactions: set options.rightRemote.entity to", this.options.rightRemote.entity)
       this.options.leftRemote.entity = document.getElementById("left-cursor");
+      console.log("interactions: set options.leftRemote.entity to", this.options.leftRemote.entity)
       this.rightCursorControllerEl = document.getElementById("right-cursor-controller");
       this.leftCursorControllerEl = document.getElementById("left-cursor-controller");
       this.ready = true;
     });
   },
+
+  oldRightRemoteHeld: null,
+  oldLeftRemoteHeld: null,
 
   updateLegacyState() {
     this.previousState.rightRemote.hovered = this.state.rightRemote.hovered;
@@ -140,7 +145,15 @@ AFRAME.registerSystem("interaction", {
     this.state.rightHand.hovered = anyAframeEntityWith(world, HoveredHandRight);
     this.state.leftHand.hovered = anyAframeEntityWith(world, HoveredHandLeft);
     this.state.rightRemote.held = anyAframeEntityWith(world, HeldRemoteRight);
+    if (this.state.rightRemote.held !== this.oldRightRemoteHeld) {
+      console.log("interactions: set state.rightRemote.held to:", this.state.rightRemote.held?.object3D.id, this.state.rightRemote.held)
+    }
+    this.oldRightRemoteHeld = this.state.rightRemote.held;
     this.state.leftRemote.held = anyAframeEntityWith(world, HeldRemoteLeft);
+    if (this.state.leftRemote.held !== this.oldLeftRemoteHeld) {
+      console.log("interactions: set state.leftRemote.held to:", this.state.leftRemote.held)
+    }
+    this.oldLeftRemoteHeld = this.state.leftRemote.held;
     this.state.rightHand.held = anyAframeEntityWith(world, HeldHandRight);
     this.state.leftHand.held = anyAframeEntityWith(world, HeldHandLeft);
   }

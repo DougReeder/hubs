@@ -67,7 +67,7 @@ export function usePaginatedAPI(apiCallback) {
         setState(curState => ({
           ...curState,
           isLoading: false,
-          hasMore: !!response.meta.next_cursor,
+          hasMore: !!response.meta?.next_cursor,
           results: [...curState.results, ...response.entries],
           suggestions: response.suggestions,
           error: undefined,

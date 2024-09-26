@@ -6,6 +6,7 @@ AFRAME.registerComponent("scalable-when-grabbed", {
     const interaction = AFRAME.scenes[0].systems.interaction;
     let deltaScale;
     if (interaction.state.rightRemote.held === this.el) {
+      // console.log("scalable-when-grabbed: interaction.state.rightRemote.held === this.el", interaction.state.rightRemote.held)
       deltaScale = userinput.get(paths.actions.cursor.right.scaleGrabbedGrabbable);
     }
     if (interaction.state.leftRemote.held === this.el) {
@@ -13,6 +14,7 @@ AFRAME.registerComponent("scalable-when-grabbed", {
     }
     if (!deltaScale) return;
 
+    console.log("scaling", this.el, "by", deltaScale);
     this.el.object3D.scale.addScalar(deltaScale).clampScalar(0.1, 100);
     this.el.object3D.matrixNeedsUpdate = true;
   }

@@ -29,7 +29,7 @@ AFRAME.registerComponent("hand-pose", {
     const suffix = this.id == "left" ? "_L" : "_R";
     this.mixer = mixerEl && mixerEl.components["animation-mixer"].mixer;
     if (!this.mixer || !this.mixer.clipAction(POSES.open + suffix)) {
-      console.warn("Avatar does not an 'allOpen' animation, disabling hand animations");
+      console.warn("Avatar does not have an 'allOpen' animation, disabling hand animations");
       this.el.removeAttribute("hand-pose");
       return;
     }
