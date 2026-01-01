@@ -104,4 +104,4 @@ See [their Privacy and Data Collection](https://developers.google.com/fonts/faq/
 
 If you have any other questions regarding personal data or privacy practices, please contact the Site Owner.
 
-Please visit [the forums](https://discord.com/channels/1302953641115783198/1314206482438553631) for general support help.
+Please visit the [Hubs Foundation Discord](https://discord.gg/hubs-498741086295031808) for support.
