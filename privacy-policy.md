@@ -92,7 +92,7 @@ Any content you share will be handled according to the privacy policy of the ser
 **Discord**: If a room you are in is connected to Discord, Hubs store access tokens and the server and channel IDs that have been connected.
 Hubs will synchronize chat messages, room changes, 2D and 3D objects you create, and whether you join or leave with the connected Discord channel.
 Hubs does not log any synchronized messages.
-You can see Discord’s Privacy Policy for more information.
+You can see [Discord’s Privacy Policy](https://discord.com/privacy/) for more information.
 
 ## Information received by other parties
 
