@@ -17,6 +17,8 @@ on:
     #       - "smoke04"
     #       - "smoke05"
 
+permissions: {}
+
 jobs:
   turkeyGitops:
     uses: Hubs-Foundation/hubs-ops/.github/workflows/turkeyGitops.yml@master
