@@ -1,7 +1,6 @@
 name: hubs
 on:
   push:
-    branches:
     paths-ignore: ["README.md"]
   workflow_dispatch:
     # Smoke instances aren't currently set up as of 2024-09-08

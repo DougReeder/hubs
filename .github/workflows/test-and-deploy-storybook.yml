@@ -2,10 +2,10 @@ name: test-and-deploy-storybook
 
 on:
   push:
-    branches:
+    branches: [master]
   workflow_dispatch:
 
-permissions: {}
+permissions: {contents: write}
 
 jobs:
   test-and-deploy-storybook:
